@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from './components/Login'
-import Calendar from './components/Calendar'
+import Login from './components/Login.vue'
+import Calendar from './components/Calendar.vue'
 
 const routes = [
     {
         path: '/',
-        component: Calendar,
-        name: 'Calendar',
+        component: Calendar
+        
     },
     {
         path: '/login',
-        component: Login,
-        name: 'Login',
+        component: Login
+        
     }
 ];
 

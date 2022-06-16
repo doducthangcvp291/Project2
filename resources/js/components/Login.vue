@@ -1,10 +1,12 @@
 <script>
 
 export default {
- 
 
+   name: 'Login',
    
-   data: {
+  
+   data: function() {
+    return {
       registerActive: false,
       emailLogin: "",
       passwordLogin: "",
@@ -12,7 +14,9 @@ export default {
       passwordReg: "",
       confirmReg: "",
       emptyFields: false
-   },
+      
+    }
+  },
    
    methods: {
       doLogin() {
@@ -21,6 +25,9 @@ export default {
          } else {
             alert("You are now logged in");
          }
+      },
+      ggLogin() {
+
       },
       
       doRegister() {
@@ -52,6 +59,7 @@ export default {
                      <input v-model="emailLogin" type="email" class="form-control" placeholder="Email" required>
                      <input v-model="passwordLogin" type="password" class="form-control" placeholder="Password" required>
                      <input type="submit" class="btn btn-primary" @click="doLogin">
+                     <input type="Login with GG" class="btn btn-primarygg" @click="ggLogin">
                      <p>Don't have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false">Sign up here</a>
                      </p>
                      <p><a href="#">Forgot your password?</a></p>

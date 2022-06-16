@@ -27,8 +27,8 @@
     <body class="antialiased">
         <div id="app"></div>
 
-        <!-- <script src="{{ asset('js/app.js') }}"></script> -->
-        <script src="/js/app.js"></script>
-        <!-- <script src="{{ mix('js/app.js') }}"></script> -->
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <!-- <script src="/js/app.js"></script> -->
+       
     </body>
 </html>

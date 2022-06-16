@@ -1,22 +1,24 @@
 <template>
-   <!-- <div id="app">
-       <Calendar />
+   <div id="app">
+       <!-- <Login /> -->
+       <router-view />
 
-   </div> -->
+   </div>
    <router-view />
 </template>
 <script>
-//   import Calendar from './components/Calendar.vue';
-//   import Login from './components/Login.vue';
+  import Calendar from './components/Calendar.vue';
+  import Login from './components/Login.vue';
 
-//  export default{
-//      components:{
-//          Calendar
-//      }
-//  }
+ export default{// su dung Login ???
+     components:{
+         Calendar,
+         Login
+     }
+ }
 
-export default {
-        name: 'App',
-    }
+// export default {
+//         name: 'App',
+//     }
  
 </script>
