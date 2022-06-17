@@ -9,11 +9,13 @@
 <script>
   import Calendar from './components/Calendar.vue';
   import Login from './components/Login.vue';
+  import Test from './components/Test.vue'
 
  export default{// su dung Login ???
      components:{
          Calendar,
-         Login
+         Login,
+         Test
      }
  }
 

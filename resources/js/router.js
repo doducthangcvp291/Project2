@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from './components/Login.vue'
 import Calendar from './components/Calendar.vue'
+import Test from './components/Test.vue'
 
 const routes = [
     {
@@ -12,6 +13,10 @@ const routes = [
         path: '/login',
         component: Login
         
+    },
+    {
+        path: '/thang',
+        component: Test
     }
 ];
 
