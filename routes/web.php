@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::view('/{any}', 'welcome')
-    ->where('any', '.*');
+Route::get('/login', function () {
+    return view('welcome');
+});
+
+Route::get('/thang', function () {
+    return view('welcome');
+});
+
+Route::get('/callingapi', function () {
+    return view('welcome');
+});
+
+Route::get('/modal', function () {
+    return view('welcome');
+});
+
+// Route::view('/{any}', 'welcome')
+//     ->where('any', '.*');
+
+Route::resource('products', ProductController::class);
 
 
 
