@@ -5,19 +5,24 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
-import Modal from './EventModal'
+import Modal from './EventModal.vue'
+import Modal2 from './EventModal2.vue'
+//import DeleteEvent from 'DeleteEventModal.vue'
 
 export default { 
   
   name : 'Calendar', 
 
   components: {
-    FullCalendar // make the <FullCalendar> tag available
-    
+    FullCalendar, // make the <FullCalendar> tag available,
+    Modal,
+    Modal2
   },
 
   data: function() {
     return {
+      showModal: false,
+      showModal2: false,
       calendarOptions: {
         plugins: [
           dayGridPlugin,
@@ -76,6 +81,7 @@ export default {
       if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
         clickInfo.event.remove()
       }
+      // su dung slot de gan event name , hoac props truyen event name sang cho Delete modal
     },
 
     handleEvents(events) {
@@ -87,10 +93,16 @@ export default {
 
 <template>
   <div class='demo-app'>
+    <div>
+    <modal v-if="showModal" :show="showModal" @close="showModal=false" />   
+    <modal2 v-if="showModal2" :show="showModal2" @close="showModal2=false" />   
+
+    </div>
     <div class='demo-app-sidebar'>
       <div class='demo-app-sidebar-section'>
         <h2>Add new event</h2>
-        
+        <button type="button" @click="showModal=!showModal">Add</button>
+        <button type="button" @click="showModal2=!showModal2">Edit</button>
       </div>
       <div class='demo-app-sidebar-section'>
         <label>
