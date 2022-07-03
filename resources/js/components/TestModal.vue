@@ -1,9 +1,9 @@
 <template>
 <h1>Test Modal</h1>
+<button type="button" class="btn btn-primary" @click="showModal=!showModal">Open Modal</button>
 <div>
-    <Modal >       
-    </Modal>        
-        <button @click="handleModalToggle2" type="button" >Open Modal</button>
+    <modal v-if="showModal" :show="showModal" :save="addevent" @close="showModal=false" />
+    
 
 </div>
 </template>
@@ -12,21 +12,22 @@
 import Modal from './EventModal.vue'
  export default {
     name: 'TestModal',
-    components: {
-        
+    components: {        
         Modal
     },
     data: function() {
         return {
-            modalActive: true 
+            showModal: false,
+            events: {infor:''},
+            calendar:{
+
+            }
         }
     },
     methods: {
-        handleModalToggle2(){
-            this.modalActive = !this.modalActive
-            console.log(this.modalActive)
-            console.log(typeof(this.modalActive))
-    },
+        addevent(){
+
+        }
     }
 
  }
