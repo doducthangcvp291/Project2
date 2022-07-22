@@ -26,7 +26,7 @@ const routes = [
         component: TestModal
     },
     {
-        path:'/callingapi',
+        path:'/apicalling',
         component: Api
     }
 ];

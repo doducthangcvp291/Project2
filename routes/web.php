@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/thang', function () {
     return view('welcome');
 });
 
-Route::get('/callingapi', function () {
+Route::get('/apicalling', function () {
     return view('welcome');
 });
 
@@ -34,10 +35,16 @@ Route::get('/modal', function () {
     return view('welcome');
 });
 
+// Route::get('/event', function () {
+//     return view('welcome');
+// });
+
+
 // Route::view('/{any}', 'welcome')
 //     ->where('any', '.*');
 
 Route::resource('products', ProductController::class);
+Route::resource('events', EventController::class);
 
 
 

@@ -66,7 +66,7 @@
 
 <script>
     export default {
-        data() {
+        data: function() {
             return {
                 product: {
                     name: '',
@@ -107,9 +107,11 @@
                     const response = await axios.get('/products')
                     console.log('getListPrResponse: ',response)
                     this.listProducts = response.data
+                    console.log(' this.products ',this.listProducts)
                     this.listProducts.forEach(item => {
                         Vue.set(item, 'isEdit', false)
                     })
+                    console.log(' this.products after ',this.listProducts)
                 } catch (error) {
                     //this.error = error.response.data
                     console.log('getListPrError')

@@ -34818,26 +34818,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context2.sent;
                 console.log('getListPrResponse: ', response);
                 _this2.listProducts = response.data;
+                console.log(' this.products ', _this2.listProducts);
 
                 _this2.listProducts.forEach(function (item) {
                   Vue.set(item, 'isEdit', false);
                 });
 
-                _context2.next = 12;
+                console.log(' this.products after ', _this2.listProducts);
+                _context2.next = 14;
                 break;
 
-              case 9:
-                _context2.prev = 9;
+              case 11:
+                _context2.prev = 11;
                 _context2.t0 = _context2["catch"](0);
                 //this.error = error.response.data
                 console.log('getListPrError');
 
-              case 12:
+              case 14:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 9]]);
+        }, _callee2, null, [[0, 11]]);
       }))();
     },
     selecteProduct: function selecteProduct(product) {
@@ -34928,35 +34930,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _fullcalendar_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fullcalendar/vue3 */ "./node_modules/@fullcalendar/vue3/dist/main.js");
-/* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/main.js");
-/* harmony import */ var _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/timegrid */ "./node_modules/@fullcalendar/timegrid/main.js");
-/* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/main.js");
-/* harmony import */ var _event_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./event-utils */ "./resources/js/components/event-utils.js");
-/* harmony import */ var _EventModal_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EventModal.vue */ "./resources/js/components/EventModal.vue");
-/* harmony import */ var _EventModal2_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EventModal2.vue */ "./resources/js/components/EventModal2.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fullcalendar_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/vue3 */ "./node_modules/@fullcalendar/vue3/dist/main.js");
+/* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/main.js");
+/* harmony import */ var _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fullcalendar/timegrid */ "./node_modules/@fullcalendar/timegrid/main.js");
+/* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/main.js");
+/* harmony import */ var _event_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./event-utils */ "./resources/js/components/event-utils.js");
+/* harmony import */ var _EventModal_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./EventModal.vue */ "./resources/js/components/EventModal.vue");
+/* harmony import */ var _EventModal2_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./EventModal2.vue */ "./resources/js/components/EventModal2.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
 
 
 
- //import DeleteEvent from 'DeleteEventModal.vue'
+
+
+ //import EventArrayTest from './EventArrayTest'
+//import DeleteEvent from 'DeleteEventModal.vue'
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Calendar',
   components: {
-    FullCalendar: _fullcalendar_vue3__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FullCalendar: _fullcalendar_vue3__WEBPACK_IMPORTED_MODULE_1__["default"],
     // make the <FullCalendar> tag available,
-    Modal: _EventModal_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Modal2: _EventModal2_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    Modal: _EventModal_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Modal2: _EventModal2_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
     return {
+      //event_test: INITIAL_EVENTS,
       showModal: false,
       showModal2: false,
       calendarOptions: {
-        plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_3__["default"] // needed for dateClick
+        eventDBS: [],
+        plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_4__["default"] // needed for dateClick
         ],
         headerToolbar: {
           left: 'prev,next today',
@@ -34964,7 +34980,7 @@ __webpack_require__.r(__webpack_exports__);
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
-        initialEvents: _event_utils__WEBPACK_IMPORTED_MODULE_4__.INITIAL_EVENTS,
+        initialEvents: this.eventDBS,
         // alternatively, use the `events` setting to fetch from a feed
         editable: true,
         selectable: true,
@@ -34984,30 +35000,108 @@ __webpack_require__.r(__webpack_exports__);
       currentEvents: []
     };
   },
+  created: function created() {
+    this.getListEvents();
+  },
   methods: {
     handleWeekendsToggle: function handleWeekendsToggle() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
     },
+    createEvent: function createEvent(e_title, e_start, e_end) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _this.error = null;
+                _context.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_8___default().post('/events', {
+                  title: e_title,
+                  start: e_start,
+                  end: e_end
+                });
+
+              case 4:
+                response = _context.sent;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                _this.error = _context.t0.response.data;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }))();
+    },
+    getListEvents: function getListEvents() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_8___default().get('/events');
+
+              case 3:
+                response = _context2.sent;
+                // neu khai bao route trong api route thi can axios.get('/api/events')
+                console.log('resdata event: ', response.data.events);
+                _this2.calendarOptions.eventDBS = response.data.events;
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+                //this.error = error.response.data
+                console.log('getListEventError');
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 8]]);
+      }))();
+    },
     handleDateSelect: function handleDateSelect(selectInfo) {
+      console.log('select info: ', selectInfo);
       var title = prompt('Please enter a new title for your event');
       var calendarApi = selectInfo.view.calendar;
       calendarApi.unselect(); // clear date selection
 
       if (title) {
+        var startTime = selectInfo.startStr;
+        var endTime = selectInfo.endStr;
         calendarApi.addEvent({
-          id: (0,_event_utils__WEBPACK_IMPORTED_MODULE_4__.createEventId)(),
+          id: (0,_event_utils__WEBPACK_IMPORTED_MODULE_5__.createEventId)(),
           title: title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
+          start: startTime,
+          end: endTime,
           allDay: selectInfo.allDay
-        });
+        }); //
+
+        this.createEvent(title, startTime, endTime);
       }
     },
     handleEventClick: function handleEventClick(clickInfo) {
-      if (confirm("Are you sure you want to delete the event '".concat(clickInfo.event.title, "'"))) {
-        clickInfo.event.remove();
-      } // su dung slot de gan event name , hoac props truyen event name sang cho Delete modal
-
+      // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      //   clickInfo.event.remove()
+      console.log(clickInfo.event.title); // su dung slot de gan event name , hoac props truyen event name sang cho Delete modal
     },
     handleEvents: function handleEvents(events) {
       this.currentEvents = events;
@@ -35344,9 +35438,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "fade"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [$data.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.error.message), 1
+      return [_ctx.error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.error.message), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.error.errors, function (errorName, index) {
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.error.errors, function (errorName, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
           key: index
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(errorName[0]), 1
@@ -35358,7 +35452,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "button",
         "class": "close",
         onClick: _cache[0] || (_cache[0] = function ($event) {
-          return $data.error = null;
+          return _ctx.error = null;
         })
       }, _hoisted_5)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
@@ -35367,23 +35461,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.product.name = $event;
+      return _ctx.product.name = $event;
     }),
     type: "text",
     "class": "form-control",
     placeholder: "Name..."
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.product.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.product.price = $event;
+      return _ctx.product.price = $event;
     }),
     type: "text",
     "class": "form-control",
     placeholder: "Price..."
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.product.price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.product.price]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
     onClick: _cache[3] || (_cache[3] = function () {
       return $options.createProduct && $options.createProduct.apply($options, arguments);
@@ -35393,7 +35487,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     tag: "tbody"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.listProducts, function (product, index) {
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.listProducts, function (product, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           key: product.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.id), 1
@@ -35403,22 +35497,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
           type: "text",
           "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-            return $data.selectedProduct.name = $event;
+            return _ctx.selectedProduct.name = $event;
           }),
           "class": "form-control"
         }, null, 512
         /* NEED_PATCH */
-        ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.selectedProduct.name]])])), !product.isEdit ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.price), 1
+        ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.selectedProduct.name]])])), !product.isEdit ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.price), 1
         /* TEXT */
         )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
           type: "text",
           "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-            return $data.selectedProduct.price = $event;
+            return _ctx.selectedProduct.price = $event;
           }),
           "class": "form-control"
         }, null, 512
         /* NEED_PATCH */
-        ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.selectedProduct.price]])])), !product.isEdit ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.selectedProduct.price]])])), !product.isEdit ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           "class": "btn btn-primary",
           onClick: function onClick($event) {
             return $options.selecteProduct(product);
@@ -35496,7 +35590,14 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_8 = {
   "class": "demo-app-sidebar-section"
 };
-var _hoisted_9 = {
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "demo-app-sidebar-section"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Event DB"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul>\r\n          <li v-for='eventDB in eventDBS'>\r\n            <b>{{eventDB.title}}</b>\r\n            <i>{{eventDB.start}}</i>\r\n            <i>{{eventDB.end}}</i>\r\n          </li>\r\n        </ul> ")], -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
   "class": "demo-app-main"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -35552,7 +35653,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FullCalendar, {
+  ))])]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FullCalendar, {
     "class": "demo-app-calendar",
     options: _ctx.calendarOptions
   }, {
@@ -36045,15 +36146,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createEventId": () => (/* binding */ createEventId)
 /* harmony export */ });
 var eventGuid = 0;
-var todayStr = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
+var today = new Date();
+var todayStr = today.toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
+// const yesterday = new Date(today)
+// yesterday.setDate(yesterday.getDate() - 1)
+// let yesterdayStr = yesterday.toISOString().replace(/T.*$/, '')
 
 var INITIAL_EVENTS = [{
   id: createEventId(),
-  title: 'All-day event',
+  title: 'All-day Go out event',
   start: todayStr
 }, {
   id: createEventId(),
-  title: 'Timed event',
+  title: 'Timed Study event',
   start: todayStr + 'T12:00:00'
 }];
 function createEventId() {
@@ -36098,7 +36203,7 @@ var routes = [{
   path: '/modal',
   component: _components_TestModal_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  path: '/callingapi',
+  path: '/apicalling',
   component: _components_ApiCalling_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_5__.createRouter)({

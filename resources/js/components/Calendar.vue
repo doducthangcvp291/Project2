@@ -1,5 +1,4 @@
 <script>
-
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -7,6 +6,8 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { INITIAL_EVENTS, createEventId } from './event-utils'
 import Modal from './EventModal.vue'
 import Modal2 from './EventModal2.vue'
+import axios from 'axios'
+//import EventArrayTest from './EventArrayTest'
 //import DeleteEvent from 'DeleteEventModal.vue'
 
 export default { 
@@ -21,9 +22,13 @@ export default {
 
   data: function() {
     return {
+      
+      //event_test: INITIAL_EVENTS,
       showModal: false,
       showModal2: false,
-      calendarOptions: {
+      
+      calendarOptions: { 
+        eventDBS: [],       
         plugins: [
           dayGridPlugin,
           timeGridPlugin,
@@ -35,7 +40,7 @@ export default {
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        initialEvents: this.eventDBS, // alternatively, use the `events` setting to fetch from a feed
         editable: true,
         selectable: true,
         selectMirror: true,
@@ -50,9 +55,14 @@ export default {
         eventRemove:
         */
       },
-      currentEvents: []
+      currentEvents: [],
+      
     }
   },
+
+  created(){
+            this.getListEvents();
+        },
 
   methods: {
 
@@ -60,27 +70,59 @@ export default {
       this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
     },
 
+    async createEvent(e_title,e_start,e_end) {
+                try {
+                    this.error = null
+                    const response = await axios.post('/events', {
+                        title: e_title ,
+                        start: e_start,
+                        end: e_end         
+                    })                  
+                    // reset giá trị form về ban đầu
+                    
+                } catch (error) {
+                    this.error = error.response.data
+                }
+            },
+    async getListEvents() {
+                try {
+                    const response = await axios.get('/events')// neu khai bao route trong api route thi can axios.get('/api/events')
+                    console.log('resdata event: ',response.data.events)
+                    this.calendarOptions.eventDBS = response.data.events                                      
+                } catch (error) {
+                    //this.error = error.response.data
+                    console.log('getListEventError')
+                }
+           },
+
     handleDateSelect(selectInfo) {
+      console.log('select info: ',selectInfo)
       let title = prompt('Please enter a new title for your event')
       let calendarApi = selectInfo.view.calendar
 
       calendarApi.unselect() // clear date selection
 
       if (title) {
+        let startTime = selectInfo.startStr
+        let endTime = selectInfo.endStr
         calendarApi.addEvent({
           id: createEventId(),
           title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
+          start: startTime,
+          end: endTime,
           allDay: selectInfo.allDay
         })
+        //
+        this.createEvent(title,startTime,endTime)
+        
       }
     },
 
     handleEventClick(clickInfo) {
-      if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-        clickInfo.event.remove()
-      }
+      // if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      //   clickInfo.event.remove()
+      console.log(clickInfo.event.title)
+      
       // su dung slot de gan event name , hoac props truyen event name sang cho Delete modal
     },
 
@@ -122,6 +164,17 @@ export default {
             <i>{{ event.title }}</i>
           </li>
         </ul>
+      </div>
+      
+      <div class='demo-app-sidebar-section'>
+        <h2>Event DB</h2>
+        <!-- <ul>
+          <li v-for='eventDB in eventDBS'>
+            <b>{{eventDB.title}}</b>
+            <i>{{eventDB.start}}</i>
+            <i>{{eventDB.end}}</i>
+          </li>
+        </ul> -->
       </div>
     </div>
     <div class='demo-app-main'>

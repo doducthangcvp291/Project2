@@ -26,3 +26,5 @@ Route::prefix('/users')->group(function(){
     Route::get('/list',[UserController::class,'showList']);
 
 });
+
+//Route::get('/event', 'EventController@getEvents');
