@@ -34967,11 +34967,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      events: "",
       //event_test: INITIAL_EVENTS,
       showModal: false,
       showModal2: false,
       calendarOptions: {
-        eventDBS: [],
         plugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_2__["default"], _fullcalendar_timegrid__WEBPACK_IMPORTED_MODULE_3__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_4__["default"] // needed for dateClick
         ],
         headerToolbar: {
@@ -34980,8 +34980,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
-        initialEvents: this.eventDBS,
-        // alternatively, use the `events` setting to fetch from a feed
+        //initialEvents: this.eventDBS, // alternatively, use the `events` setting to fetch from a feed
         editable: true,
         selectable: true,
         selectMirror: true,
@@ -35001,7 +35000,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
-    this.getListEvents();
+    this.getEvents();
   },
   methods: {
     handleWeekendsToggle: function handleWeekendsToggle() {
@@ -35077,6 +35076,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2, null, [[0, 8]]);
       }))();
+    },
+    getEvents: function getEvents() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_8___default().get("/events").then(function (res) {
+        _this3.events = res.data.data;
+        console.log(' resp data data ', res.data.data);
+        console.log(' this.events: ', _this3.events);
+      })["catch"](function (err) {
+        return console.log(err.response.data);
+      });
     },
     handleDateSelect: function handleDateSelect(selectInfo) {
       console.log('select info: ', selectInfo);
@@ -35655,21 +35665,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))])]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FullCalendar, {
     "class": "demo-app-calendar",
-    options: _ctx.calendarOptions
-  }, {
-    eventContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (arg) {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(arg.timeText), 1
-      /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(arg.event.title), 1
-      /* TEXT */
-      )];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
+    options: _ctx.calendarOptions,
+    events: _ctx.events
+  }, null, 8
   /* PROPS */
-  , ["options"])])]);
+  , ["options", "events"])])]);
 }
 
 /***/ }),

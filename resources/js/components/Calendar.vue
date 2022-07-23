@@ -22,13 +22,14 @@ export default {
 
   data: function() {
     return {
+      events: "",
       
       //event_test: INITIAL_EVENTS,
       showModal: false,
       showModal2: false,
       
       calendarOptions: { 
-        eventDBS: [],       
+               
         plugins: [
           dayGridPlugin,
           timeGridPlugin,
@@ -40,7 +41,7 @@ export default {
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
-        initialEvents: this.eventDBS, // alternatively, use the `events` setting to fetch from a feed
+        //initialEvents: this.eventDBS, // alternatively, use the `events` setting to fetch from a feed
         editable: true,
         selectable: true,
         selectMirror: true,
@@ -61,7 +62,7 @@ export default {
   },
 
   created(){
-            this.getListEvents();
+            this.getEvents();
         },
 
   methods: {
@@ -94,6 +95,17 @@ export default {
                     console.log('getListEventError')
                 }
            },
+
+    getEvents() {
+      axios
+        .get("/events")
+        .then(
+          res => {this.events = res.data.data
+          console.log(' resp data data ',res.data.data)
+          console.log(' this.events: ',this.events)
+        })
+        .catch(err => console.log(err.response.data));
+    },
 
     handleDateSelect(selectInfo) {
       console.log('select info: ',selectInfo)
@@ -181,11 +193,9 @@ export default {
       <FullCalendar
         class='demo-app-calendar'
         :options='calendarOptions'
+        :events="events"
       >
-        <template v-slot:eventContent='arg'>
-          <b>{{ arg.timeText }}</b>
-          <i>{{ arg.event.title }}</i>
-        </template>
+
       </FullCalendar>
     </div>
   </div>

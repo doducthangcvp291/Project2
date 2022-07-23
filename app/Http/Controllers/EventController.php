@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Resources\EventResource;
 use Illuminate\Http\Request;
 use App\Models\Event;
 
@@ -15,8 +15,7 @@ class EventController extends Controller
     public function index()
     {
         // $events = Event::orderBy('created_at', 'desc')->select('title','start')->get();
-        $events = Event::all();
-        return response()->json(["events" => $events]);
+        return EventResource::collection(Event::all());
         //return " index EventController";
     }
 
