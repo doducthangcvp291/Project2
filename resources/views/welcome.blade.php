@@ -25,7 +25,9 @@
         </style>
     </head>
     <body class="antialiased">
-        <div id="app"></div>
+        <div id="app">
+         <router-view/>
+        </div>
 
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <!-- <script src="/js/app.js"></script> -->

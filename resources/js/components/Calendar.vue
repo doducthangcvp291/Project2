@@ -22,8 +22,7 @@ export default {
 
   data: function() {
     return {
-      events: "",
-      
+      eventDBS:"",      
       //event_test: INITIAL_EVENTS,
       showModal: false,
       showModal2: false,
@@ -41,15 +40,31 @@ export default {
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
-        //initialEvents: this.eventDBS, // alternatively, use the `events` setting to fetch from a feed
+       // truyen thang mang vao INITIAL thi dc , con gan vao events ko dc , kha nang do loi dinh dang .
+
+        //       ], // alternatively, use the `events` setting to fetch from a feed
+        initialEvents:[
+          {
+            "id": 1,
+            "title": "haha",
+            "start": "2022-07-04",
+            "end": "2022-07-05"
+        },
+        {
+            "id": 2,
+            "title": "hoho",
+            "start": "2022-07-13",
+            "end": "2022-07-14"
+        }
+        ],
         editable: true,
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
-        select: this.handleDateSelect,
-        eventClick: this.handleEventClick,
-        eventsSet: this.handleEvents
+        // select: this.handleDateSelect,
+        // eventClick: this.handleEventClick,
+        //eventsSet: this.handleEvents
         /* you can update a remote database when these fire:
         eventAdd:
         eventChange:
@@ -74,7 +89,7 @@ export default {
     async createEvent(e_title,e_start,e_end) {
                 try {
                     this.error = null
-                    const response = await axios.post('/events', {
+                    const response = await axios.post('api/events', {
                         title: e_title ,
                         start: e_start,
                         end: e_end         
@@ -85,26 +100,18 @@ export default {
                     this.error = error.response.data
                 }
             },
-    async getListEvents() {
-                try {
-                    const response = await axios.get('/events')// neu khai bao route trong api route thi can axios.get('/api/events')
-                    console.log('resdata event: ',response.data.events)
-                    this.calendarOptions.eventDBS = response.data.events                                      
-                } catch (error) {
-                    //this.error = error.response.data
-                    console.log('getListEventError')
-                }
-           },
 
-    getEvents() {
-      axios
-        .get("/events")
-        .then(
-          res => {this.events = res.data.data
-          console.log(' resp data data ',res.data.data)
-          console.log(' this.events: ',this.events)
-        })
-        .catch(err => console.log(err.response.data));
+    async getEvents() {
+      try{
+        const res = await axios.get("api/events")
+        console.log(' resp ',res)
+        console.log(' resp data data ',res.data.data)
+        //Object.assign(this.calendarOptions.initialEvents, res.data.data)
+        console.log(' Initial event ', this.calendarOptions.initialEvents)
+
+      }
+
+        catch (err) { console.log("Error",err)};
     },
 
     handleDateSelect(selectInfo) {
@@ -180,23 +187,27 @@ export default {
       
       <div class='demo-app-sidebar-section'>
         <h2>Event DB</h2>
-        <!-- <ul>
+        <ul>
           <li v-for='eventDB in eventDBS'>
             <b>{{eventDB.title}}</b>
             <i>{{eventDB.start}}</i>
             <i>{{eventDB.end}}</i>
           </li>
-        </ul> -->
+        </ul>
       </div>
     </div>
     <div class='demo-app-main'>
       <FullCalendar
         class='demo-app-calendar'
-        :options='calendarOptions'
-        :events="events"
-      >
+        :options="calendarOptions">
+        <template v-slot:eventContent='arg'>
+          <b>{{ arg.timeText }}</b>
+          <i>{{ arg.event.title }}</i>
+        </template>
+        </FullCalendar>
+      
 
-      </FullCalendar>
+      
     </div>
   </div>
 </template>

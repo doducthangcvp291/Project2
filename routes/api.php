@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EventController;
 
 
 /*
@@ -28,3 +30,12 @@ Route::prefix('/users')->group(function(){
 });
 
 //Route::get('/event', 'EventController@getEvents');
+
+// Route::prefix('/products')->group(function(){
+//     Route::post('/',[ProductController::class,'store']);
+//     Route::get('/',[ProductController::class,'index']);
+
+// });
+
+Route::resource('products', ProductController::class);
+Route::resource('events', EventController::class);

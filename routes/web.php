@@ -35,16 +35,16 @@ Route::get('/modal', function () {
     return view('welcome');
 });
 
-// Route::get('/event', function () {
-//     return view('welcome');
-// });
+Route::get('/event', function () {
+    return view('welcome');
+});
 
 
 // Route::view('/{any}', 'welcome')
 //     ->where('any', '.*');
 
-Route::resource('products', ProductController::class);
-Route::resource('events', EventController::class);
+// Route::resource('products', ProductController::class);
+
 
 
 

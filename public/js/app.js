@@ -34768,7 +34768,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 0;
                 _this.error = null;
                 _context.next = 4;
-                return axios.post('/products', {
+                return axios.post('api/products', {
                   name: _this.product.name,
                   price: _this.product.price
                 });
@@ -34812,7 +34812,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios.get('/products');
+                return axios.get('api/products');
 
               case 3:
                 response = _context2.sent;
@@ -34857,7 +34857,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context3.prev = 0;
                 _context3.next = 3;
-                return axios.put('/products/' + _this3.selectedProduct.id, {
+                return axios.put('api/products/' + _this3.selectedProduct.id, {
                   name: _this3.selectedProduct.name,
                   price: _this3.selectedProduct.price
                 });
@@ -34893,7 +34893,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context4.prev = 0;
                 _context4.next = 3;
-                return axios["delete"]('/products/' + product.id);
+                return axios["delete"]('api/products/' + product.id);
 
               case 3:
                 _this4.listProducts.splice(index, 1);
@@ -34967,7 +34967,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      events: "",
+      eventDBS: "",
       //event_test: INITIAL_EVENTS,
       showModal: false,
       showModal2: false,
@@ -34980,15 +34980,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
-        //initialEvents: this.eventDBS, // alternatively, use the `events` setting to fetch from a feed
+        // truyen thang mang vao INITIAL thi dc , con gan vao events ko dc , kha nang do loi dinh dang .
+        //       ], // alternatively, use the `events` setting to fetch from a feed
+        initialEvents: [{
+          "id": 1,
+          "title": "haha",
+          "start": "2022-07-04",
+          "end": "2022-07-05"
+        }, {
+          "id": 2,
+          "title": "hoho",
+          "start": "2022-07-13",
+          "end": "2022-07-14"
+        }],
         editable: true,
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
-        weekends: true,
-        select: this.handleDateSelect,
-        eventClick: this.handleEventClick,
-        eventsSet: this.handleEvents
+        weekends: true // select: this.handleDateSelect,
+        // eventClick: this.handleEventClick,
+        //eventsSet: this.handleEvents
+
         /* you can update a remote database when these fire:
         eventAdd:
         eventChange:
@@ -35018,7 +35030,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 0;
                 _this.error = null;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_8___default().post('/events', {
+                return axios__WEBPACK_IMPORTED_MODULE_8___default().post('api/events', {
                   title: e_title,
                   start: e_start,
                   end: e_end
@@ -35042,51 +35054,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[0, 7]]);
       }))();
     },
-    getListEvents: function getListEvents() {
+    getEvents: function getEvents() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var response;
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_8___default().get('/events');
+                return axios__WEBPACK_IMPORTED_MODULE_8___default().get("api/events");
 
               case 3:
-                response = _context2.sent;
-                // neu khai bao route trong api route thi can axios.get('/api/events')
-                console.log('resdata event: ', response.data.events);
-                _this2.calendarOptions.eventDBS = response.data.events;
-                _context2.next = 11;
+                res = _context2.sent;
+                console.log(' resp ', res);
+                console.log(' resp data data ', res.data.data); //Object.assign(this.calendarOptions.initialEvents, res.data.data)
+
+                console.log(' Initial event ', _this2.calendarOptions.initialEvents);
+                _context2.next = 12;
                 break;
 
-              case 8:
-                _context2.prev = 8;
+              case 9:
+                _context2.prev = 9;
                 _context2.t0 = _context2["catch"](0);
-                //this.error = error.response.data
-                console.log('getListEventError');
+                console.log("Error", _context2.t0);
 
-              case 11:
+              case 12:
+                ;
+
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 8]]);
+        }, _callee2, null, [[0, 9]]);
       }))();
-    },
-    getEvents: function getEvents() {
-      var _this3 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_8___default().get("/events").then(function (res) {
-        _this3.events = res.data.data;
-        console.log(' resp data data ', res.data.data);
-        console.log(' this.events: ', _this3.events);
-      })["catch"](function (err) {
-        return console.log(err.response.data);
-      });
     },
     handleDateSelect: function handleDateSelect(selectInfo) {
       console.log('select info: ', selectInfo);
@@ -35600,14 +35604,15 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_8 = {
   "class": "demo-app-sidebar-section"
 };
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_9 = {
   "class": "demo-app-sidebar-section"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Event DB"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <ul>\r\n          <li v-for='eventDB in eventDBS'>\r\n            <b>{{eventDB.title}}</b>\r\n            <i>{{eventDB.start}}</i>\r\n            <i>{{eventDB.end}}</i>\r\n          </li>\r\n        </ul> ")], -1
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Event DB", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = {
+var _hoisted_11 = {
   "class": "demo-app-main"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -35663,13 +35668,33 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FullCalendar, {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.eventDBS, function (eventDB) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(eventDB.title), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(eventDB.start), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(eventDB.end), 1
+    /* TEXT */
+    )]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FullCalendar, {
     "class": "demo-app-calendar",
-    options: _ctx.calendarOptions,
-    events: _ctx.events
-  }, null, 8
+    options: _ctx.calendarOptions
+  }, {
+    eventContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (arg) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(arg.timeText), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(arg.event.title), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
   /* PROPS */
-  , ["options", "events"])])]);
+  , ["options"])])]);
 }
 
 /***/ }),

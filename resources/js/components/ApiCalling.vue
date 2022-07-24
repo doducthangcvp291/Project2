@@ -84,7 +84,7 @@
             async createProduct() {
                 try {
                     this.error = null
-                    const response = await axios.post('/products', {
+                    const response = await axios.post('api/products', {
                         name: this.product.name,
                         price: this.product.price
                     })
@@ -104,7 +104,7 @@
             },
             async getListProducts() {
                 try {
-                    const response = await axios.get('/products')
+                    const response = await axios.get('api/products')
                     console.log('getListPrResponse: ',response)
                     this.listProducts = response.data
                     console.log(' this.products ',this.listProducts)
@@ -123,7 +123,7 @@
 			},
 			async updateProduct(index) {
                 try {
-                    const response = await axios.put('/products/' + this.selectedProduct.id, {
+                    const response = await axios.put('api/products/' + this.selectedProduct.id, {
                         name: this.selectedProduct.name,
                         price: this.selectedProduct.price
                     })
@@ -137,7 +137,7 @@
 			},
             async deleteProduct(product, index) {
                 try {
-                    await axios.delete('/products/' + product.id)
+                    await axios.delete('api/products/' + product.id)
                     this.listProducts.splice(index, 1)
                 } catch (error) {
                     this.error = error.response.data
